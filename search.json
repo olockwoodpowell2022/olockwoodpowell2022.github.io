@@ -14,11 +14,11 @@
     "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
   },
   {
-    "objectID": "posts/ufc-knockout-rankings/index.html",
-    "href": "posts/ufc-knockout-rankings/index.html",
-    "title": "index",
-    "section": "",
-    "text": "title: “The Weight of a UFC Knockout” subtitle: “Analyzing UFC knockout rates, fight times and outcomes across weight classses from 2016-2026” author: “Oscar Lockwood-Powell”"
+    "objectID": "posts/ufc-knockout-rankings/index.html#introduction",
+    "href": "posts/ufc-knockout-rankings/index.html#introduction",
+    "title": "The Weight of a UFC Knockout",
+    "section": "Introduction",
+    "text": "Introduction\nDoes a fighters weight class lead to more knockouts in the UFC?\nThis project goes over fights from 2016-2026, comparing the difference in fight outcomes, time and knockout rates between different weight classes. The goal is to find out if a heavier weight class is associated with more knockouts in the octagon within the last decade."
   },
   {
     "objectID": "posts/post-with-code/index.html",
@@ -32,6 +32,6 @@
     "href": "index.html",
     "title": "Latest posts",
     "section": "",
-    "text": "index\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nNov 10, 2026\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nNov 7, 2026\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
+    "text": "The Weight of a UFC Knockout\n\n\nAnalyzing UFC knockout rates, fight times and outcomes across weight classses from 2016-2026\n\n\n\n\n\n\n\n\n\n\nOscar Lockwood-Powell\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nNov 10, 2026\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nNov 7, 2026\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
   }
 ]

@@ -67,7 +67,8 @@ font-style: inherit;">1</span></span></code></pre></div></div>
   <pubDate>Sat, 07 Nov 2026 06:00:00 GMT</pubDate>
 </item>
 <item>
-  <title>index</title>
+  <title>The Weight of a UFC Knockout</title>
+  <dc:creator>Oscar Lockwood-Powell</dc:creator>
   <link>https://your-website-url.example.com/posts/ufc-knockout-rankings/</link>
   <description><![CDATA[ 
 
@@ -76,13 +77,17 @@ font-style: inherit;">1</span></span></code></pre></div></div>
 
 
 <hr>
-<p>title: “The Weight of a UFC Knockout” subtitle: “Analyzing UFC knockout rates, fight times and outcomes across weight classses from 2016-2026” author: “Oscar Lockwood-Powell”</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Does a fighters weight class lead to more knockouts in the UFC?</p>
+<p>This project goes over fights from 2016-2026, comparing the difference in fight outcomes, time and knockout rates between different weight classes. The goal is to find out if a heavier weight class is associated with more knockouts in the octagon within the last decade.</p>
 
 
+</section>
 
  ]]></description>
   <guid>https://your-website-url.example.com/posts/ufc-knockout-rankings/</guid>
-  <pubDate>Wed, 11 Nov 2026 14:59:13 GMT</pubDate>
+  <pubDate>Wed, 11 Nov 2026 23:58:21 GMT</pubDate>
 </item>
 </channel>
 </rss>
