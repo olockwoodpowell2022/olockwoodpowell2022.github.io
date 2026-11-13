@@ -222,23 +222,23 @@ font-style: inherit;">"bold"</span></span>
 <span id="cb1-41">  )</span></code></pre></div></div>
 </details>
 <div class="cell-output-display">
-<div id="uirjppuiti" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#uirjppuiti table {
+<div id="lrfisoqnkx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lrfisoqnkx table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#uirjppuiti thead, #uirjppuiti tbody, #uirjppuiti tfoot, #uirjppuiti tr, #uirjppuiti td, #uirjppuiti th {
+#lrfisoqnkx thead, #lrfisoqnkx tbody, #lrfisoqnkx tfoot, #lrfisoqnkx tr, #lrfisoqnkx td, #lrfisoqnkx th {
   border-style: none;
 }
 
-#uirjppuiti p {
+#lrfisoqnkx p {
   margin: 0;
   padding: 0;
 }
 
-#uirjppuiti .gt_table {
+#lrfisoqnkx .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -264,12 +264,12 @@ font-style: inherit;">"bold"</span></span>
   border-left-color: #D3D3D3;
 }
 
-#uirjppuiti .gt_caption {
+#lrfisoqnkx .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#uirjppuiti .gt_title {
+#lrfisoqnkx .gt_title {
   color: #333333;
   font-size: 18px;
   font-weight: bold;
@@ -281,7 +281,7 @@ font-style: inherit;">"bold"</span></span>
   border-bottom-width: 0;
 }
 
-#uirjppuiti .gt_subtitle {
+#lrfisoqnkx .gt_subtitle {
   color: #333333;
   font-size: 11px;
   font-weight: initial;
@@ -293,7 +293,7 @@ font-style: inherit;">"bold"</span></span>
   border-top-width: 0;
 }
 
-#uirjppuiti .gt_heading {
+#lrfisoqnkx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -305,13 +305,13 @@ font-style: inherit;">"bold"</span></span>
   border-right-color: #D3D3D3;
 }
 
-#uirjppuiti .gt_bottom_border {
+#lrfisoqnkx .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#uirjppuiti .gt_col_headings {
+#lrfisoqnkx .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -326,7 +326,7 @@ font-style: inherit;">"bold"</span></span>
   border-right-color: #D3D3D3;
 }
 
-#uirjppuiti .gt_col_heading {
+#lrfisoqnkx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -346,7 +346,7 @@ font-style: inherit;">"bold"</span></span>
   overflow-x: hidden;
 }
 
-#uirjppuiti .gt_column_spanner_outer {
+#lrfisoqnkx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -358,15 +358,15 @@ font-style: inherit;">"bold"</span></span>
   padding-right: 4px;
 }
 
-#uirjppuiti .gt_column_spanner_outer:first-child {
+#lrfisoqnkx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#uirjppuiti .gt_column_spanner_outer:last-child {
+#lrfisoqnkx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#uirjppuiti .gt_column_spanner {
+#lrfisoqnkx .gt_column_spanner {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -378,11 +378,11 @@ font-style: inherit;">"bold"</span></span>
   width: 100%;
 }
 
-#uirjppuiti .gt_spanner_row {
+#lrfisoqnkx .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#uirjppuiti .gt_group_heading {
+#lrfisoqnkx .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -408,7 +408,7 @@ font-style: inherit;">"bold"</span></span>
   text-align: left;
 }
 
-#uirjppuiti .gt_empty_group_heading {
+#lrfisoqnkx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -423,15 +423,15 @@ font-style: inherit;">"bold"</span></span>
   vertical-align: middle;
 }
 
-#uirjppuiti .gt_from_md > :first-child {
+#lrfisoqnkx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#uirjppuiti .gt_from_md > :last-child {
+#lrfisoqnkx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#uirjppuiti .gt_row {
+#lrfisoqnkx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -450,7 +450,7 @@ font-style: inherit;">"bold"</span></span>
   overflow-x: hidden;
 }
 
-#uirjppuiti .gt_stub {
+#lrfisoqnkx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -463,7 +463,7 @@ font-style: inherit;">"bold"</span></span>
   padding-right: 5px;
 }
 
-#uirjppuiti .gt_stub_row_group {
+#lrfisoqnkx .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -477,15 +477,15 @@ font-style: inherit;">"bold"</span></span>
   vertical-align: top;
 }
 
-#uirjppuiti .gt_row_group_first td {
+#lrfisoqnkx .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#uirjppuiti .gt_row_group_first th {
+#lrfisoqnkx .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#uirjppuiti .gt_summary_row {
+#lrfisoqnkx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -495,16 +495,16 @@ font-style: inherit;">"bold"</span></span>
   padding-right: 5px;
 }
 
-#uirjppuiti .gt_first_summary_row {
+#lrfisoqnkx .gt_first_summary_row {
   border-top-style: none;
   border-top-color: #D3D3D3;
 }
 
-#uirjppuiti .gt_first_summary_row.thick {
+#lrfisoqnkx .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#uirjppuiti .gt_last_summary_row {
+#lrfisoqnkx .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -514,7 +514,7 @@ font-style: inherit;">"bold"</span></span>
   border-bottom-color: #D3D3D3;
 }
 
-#uirjppuiti .gt_grand_summary_row {
+#lrfisoqnkx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -524,7 +524,7 @@ font-style: inherit;">"bold"</span></span>
   padding-right: 5px;
 }
 
-#uirjppuiti .gt_first_grand_summary_row {
+#lrfisoqnkx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -534,7 +534,7 @@ font-style: inherit;">"bold"</span></span>
   border-top-color: #D3D3D3;
 }
 
-#uirjppuiti .gt_last_grand_summary_row_top {
+#lrfisoqnkx .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -544,11 +544,11 @@ font-style: inherit;">"bold"</span></span>
   border-bottom-color: #D3D3D3;
 }
 
-#uirjppuiti .gt_striped {
+#lrfisoqnkx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#uirjppuiti .gt_table_body {
+#lrfisoqnkx .gt_table_body {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -557,7 +557,7 @@ font-style: inherit;">"bold"</span></span>
   border-bottom-color: #D3D3D3;
 }
 
-#uirjppuiti .gt_footnotes {
+#lrfisoqnkx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -571,7 +571,7 @@ font-style: inherit;">"bold"</span></span>
   border-right-color: #D3D3D3;
 }
 
-#uirjppuiti .gt_footnote {
+#lrfisoqnkx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -580,7 +580,7 @@ font-style: inherit;">"bold"</span></span>
   padding-right: 5px;
 }
 
-#uirjppuiti .gt_sourcenotes {
+#lrfisoqnkx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -594,7 +594,7 @@ font-style: inherit;">"bold"</span></span>
   border-right-color: #D3D3D3;
 }
 
-#uirjppuiti .gt_sourcenote {
+#lrfisoqnkx .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -602,72 +602,72 @@ font-style: inherit;">"bold"</span></span>
   padding-right: 5px;
 }
 
-#uirjppuiti .gt_left {
+#lrfisoqnkx .gt_left {
   text-align: left;
 }
 
-#uirjppuiti .gt_center {
+#lrfisoqnkx .gt_center {
   text-align: center;
 }
 
-#uirjppuiti .gt_right {
+#lrfisoqnkx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#uirjppuiti .gt_font_normal {
+#lrfisoqnkx .gt_font_normal {
   font-weight: normal;
 }
 
-#uirjppuiti .gt_font_bold {
+#lrfisoqnkx .gt_font_bold {
   font-weight: bold;
 }
 
-#uirjppuiti .gt_font_italic {
+#lrfisoqnkx .gt_font_italic {
   font-style: italic;
 }
 
-#uirjppuiti .gt_super {
+#lrfisoqnkx .gt_super {
   font-size: 65%;
 }
 
-#uirjppuiti .gt_footnote_marks {
+#lrfisoqnkx .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#uirjppuiti .gt_asterisk {
+#lrfisoqnkx .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#uirjppuiti .gt_indent_1 {
+#lrfisoqnkx .gt_indent_1 {
   text-indent: 5px;
 }
 
-#uirjppuiti .gt_indent_2 {
+#lrfisoqnkx .gt_indent_2 {
   text-indent: 10px;
 }
 
-#uirjppuiti .gt_indent_3 {
+#lrfisoqnkx .gt_indent_3 {
   text-indent: 15px;
 }
 
-#uirjppuiti .gt_indent_4 {
+#lrfisoqnkx .gt_indent_4 {
   text-indent: 20px;
 }
 
-#uirjppuiti .gt_indent_5 {
+#lrfisoqnkx .gt_indent_5 {
   text-indent: 25px;
 }
 
-#uirjppuiti .katex-display {
+#lrfisoqnkx .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#uirjppuiti div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#lrfisoqnkx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1350,6 +1350,31 @@ font-style: inherit;">1</span></span></code></pre></div></div>
   <guid>https://your-website-url.example.com/posts/post-with-code/</guid>
   <pubDate>Tue, 10 Nov 2026 06:00:00 GMT</pubDate>
   <media:content url="https://your-website-url.example.com/posts/post-with-code/image.jpg" medium="image" type="image/jpeg" height="96" width="144"/>
+</item>
+<item>
+  <title>Welcome To My Blog</title>
+  <dc:creator>Tristan O&#39;Malley</dc:creator>
+  <link>https://your-website-url.example.com/posts/welcome/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>This is the first post in a Quarto blog. Welcome!</p>
+<p><img src="https://your-website-url.example.com/posts/welcome/thumbnail.jpg" class="img-fluid"></p>
+<p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
+
+
+
+ ]]></description>
+  <category>news</category>
+  <guid>https://your-website-url.example.com/posts/welcome/</guid>
+  <pubDate>Sat, 07 Nov 2026 06:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>
+/>
 </item>
 <item>
   <title>Welcome To My Blog</title>
