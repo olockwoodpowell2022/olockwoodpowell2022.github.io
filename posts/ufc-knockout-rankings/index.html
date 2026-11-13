@@ -197,72 +197,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <hr>
 <p>Does a fighter’s weight class lead to more knockouts in the UFC?</p>
-<p>In the UFC, heavier fighters are usually depicted with higher power and less endurance, while lighter fighters are more known for their speed and agility. Does this differnce really show up within fight results?</p>
-<p>This project goes over fights from 2016-2026, comparing the difference in fight outcomes, time and knockout rates between different weight classes. The goal is to find out if a heavier weight class is associated with more knockouts in the octagon within the last decade.</p>
-<p>To start off, we will look at the percentage of fights that ends in a KO/TKO finish in each weight class. This is gonna give us a good baseline when determining which division produces the most knockouts.</p>
+<p>In the UFC, heavier fighters are usually depicted with higher power and less endurance, while lighter fighters are more known for their speed and agility. Does this difference really show up within fight results?</p>
+<p>This project goes over fights from 2016-2026, comparing the differences in fight outcomes, time and knockout rates between different weight classes. The goal is to find out if a heavier weight class is associated with more knockouts in the octagon within the last decade.</p>
+<p>To start, we will look at the percentage of fights that end in a KO/TKO finish in each weight class. This is gonna give us a good baseline when determining which division produces the most knockouts.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>weight_table <span class="ot">&lt;-</span> ufc_project <span class="sc">|&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(weight_class) <span class="sc">|&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_fights =</span> <span class="fu">n</span>(),</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">knockouts =</span> <span class="fu">sum</span>(method <span class="sc">==</span> <span class="st">"KO/TKO"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">ko_percentage =</span> <span class="fu">round</span>(knockouts <span class="sc">/</span> total_fights <span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ko_percentage))</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>weight_table <span class="sc">|&gt;</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">weight_class =</span> <span class="st">"Weight Class"</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_fights =</span> <span class="st">"Total Fights"</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">knockouts =</span> <span class="st">"KO/TKO Finishes"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">ko_percentage =</span> <span class="st">"KO/TKO Rate (%)"</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Which UFC Weight Class has highest Knockout Rate?"</span>,</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"KO/TKO Across all mens UFC weight classes from June 2016 - June 2026"</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">source_note =</span> <span class="fu">md</span>(<span class="st">"**Source:** UFCStats via TidyTuesday | **By:** Oscar Lockwood-Powell"</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_table_lines</span>(<span class="st">"none"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">list</span>(</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cell_fill</span>(<span class="at">color =</span> <span class="st">"red"</span>),</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cell_text</span>(<span class="at">color =</span> <span class="st">"white"</span>)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_body</span>(</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">rows =</span> ko_percentage <span class="sc">==</span> <span class="fu">max</span>(ko_percentage)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">heading.title.font.size =</span> <span class="fu">px</span>(<span class="dv">18</span>),</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">heading.subtitle.font.size =</span> <span class="fu">px</span>(<span class="dv">11</span>),</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">heading.title.font.weight =</span> <span class="st">"bold"</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>weight_table <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">weight_class =</span> <span class="st">"Weight Class"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_fights =</span> <span class="st">"Total Fights"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">knockouts =</span> <span class="st">"KO/TKO Finishes"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">ko_percentage =</span> <span class="st">"KO/TKO Rate (%)"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Which UFC Weight Class has highest Knockout Rate?"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"KO/TKO Across all mens UFC weight classes from June 2016 - June 2026"</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">source_note =</span> <span class="fu">md</span>(<span class="st">"**Source:** UFCStats via TidyTuesday | **By:** Oscar Lockwood-Powell"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_table_lines</span>(<span class="st">"none"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">list</span>(</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cell_fill</span>(<span class="at">color =</span> <span class="st">"red"</span>),</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cell_text</span>(<span class="at">color =</span> <span class="st">"white"</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_body</span>(</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">rows =</span> ko_percentage <span class="sc">==</span> <span class="fu">max</span>(ko_percentage)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a> <span class="fu">tab_style</span>(</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="fu">cell_text</span>(</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">weight =</span> <span class="st">"bold"</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">18</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">locations =</span> <span class="fu">cells_title</span>(<span class="st">"title"</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_style</span>(</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="fu">cell_text</span>(</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">11</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">locations =</span> <span class="fu">cells_title</span>(<span class="st">"subtitle"</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="fvierlultw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fvierlultw table {
+<div id="lekrjbmija" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lekrjbmija table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fvierlultw thead, #fvierlultw tbody, #fvierlultw tfoot, #fvierlultw tr, #fvierlultw td, #fvierlultw th {
+#lekrjbmija thead, #lekrjbmija tbody, #lekrjbmija tfoot, #lekrjbmija tr, #lekrjbmija td, #lekrjbmija th {
   border-style: none;
 }
 
-#fvierlultw p {
+#lekrjbmija p {
   margin: 0;
   padding: 0;
 }
 
-#fvierlultw .gt_table {
+#lekrjbmija .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -288,15 +287,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#fvierlultw .gt_caption {
+#lekrjbmija .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fvierlultw .gt_title {
+#lekrjbmija .gt_title {
   color: #333333;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 125%;
+  font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 5px;
@@ -305,9 +304,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#fvierlultw .gt_subtitle {
+#lekrjbmija .gt_subtitle {
   color: #333333;
-  font-size: 11px;
+  font-size: 85%;
   font-weight: initial;
   padding-top: 3px;
   padding-bottom: 5px;
@@ -317,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#fvierlultw .gt_heading {
+#lekrjbmija .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -329,13 +328,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#fvierlultw .gt_bottom_border {
+#lekrjbmija .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fvierlultw .gt_col_headings {
+#lekrjbmija .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -350,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#fvierlultw .gt_col_heading {
+#lekrjbmija .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -370,7 +369,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#fvierlultw .gt_column_spanner_outer {
+#lekrjbmija .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -382,15 +381,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#fvierlultw .gt_column_spanner_outer:first-child {
+#lekrjbmija .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fvierlultw .gt_column_spanner_outer:last-child {
+#lekrjbmija .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fvierlultw .gt_column_spanner {
+#lekrjbmija .gt_column_spanner {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -402,11 +401,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#fvierlultw .gt_spanner_row {
+#lekrjbmija .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fvierlultw .gt_group_heading {
+#lekrjbmija .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -432,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#fvierlultw .gt_empty_group_heading {
+#lekrjbmija .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -447,15 +446,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#fvierlultw .gt_from_md > :first-child {
+#lekrjbmija .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fvierlultw .gt_from_md > :last-child {
+#lekrjbmija .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fvierlultw .gt_row {
+#lekrjbmija .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -474,7 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#fvierlultw .gt_stub {
+#lekrjbmija .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -487,7 +486,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#fvierlultw .gt_stub_row_group {
+#lekrjbmija .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -501,15 +500,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#fvierlultw .gt_row_group_first td {
+#lekrjbmija .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fvierlultw .gt_row_group_first th {
+#lekrjbmija .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fvierlultw .gt_summary_row {
+#lekrjbmija .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -519,16 +518,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#fvierlultw .gt_first_summary_row {
+#lekrjbmija .gt_first_summary_row {
   border-top-style: none;
   border-top-color: #D3D3D3;
 }
 
-#fvierlultw .gt_first_summary_row.thick {
+#lekrjbmija .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fvierlultw .gt_last_summary_row {
+#lekrjbmija .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -538,7 +537,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#fvierlultw .gt_grand_summary_row {
+#lekrjbmija .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -548,7 +547,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#fvierlultw .gt_first_grand_summary_row {
+#lekrjbmija .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -558,7 +557,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#fvierlultw .gt_last_grand_summary_row_top {
+#lekrjbmija .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -568,11 +567,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#fvierlultw .gt_striped {
+#lekrjbmija .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fvierlultw .gt_table_body {
+#lekrjbmija .gt_table_body {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -581,7 +580,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#fvierlultw .gt_footnotes {
+#lekrjbmija .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -595,7 +594,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#fvierlultw .gt_footnote {
+#lekrjbmija .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -604,7 +603,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#fvierlultw .gt_sourcenotes {
+#lekrjbmija .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -618,7 +617,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#fvierlultw .gt_sourcenote {
+#lekrjbmija .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -626,72 +625,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#fvierlultw .gt_left {
+#lekrjbmija .gt_left {
   text-align: left;
 }
 
-#fvierlultw .gt_center {
+#lekrjbmija .gt_center {
   text-align: center;
 }
 
-#fvierlultw .gt_right {
+#lekrjbmija .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fvierlultw .gt_font_normal {
+#lekrjbmija .gt_font_normal {
   font-weight: normal;
 }
 
-#fvierlultw .gt_font_bold {
+#lekrjbmija .gt_font_bold {
   font-weight: bold;
 }
 
-#fvierlultw .gt_font_italic {
+#lekrjbmija .gt_font_italic {
   font-style: italic;
 }
 
-#fvierlultw .gt_super {
+#lekrjbmija .gt_super {
   font-size: 65%;
 }
 
-#fvierlultw .gt_footnote_marks {
+#lekrjbmija .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fvierlultw .gt_asterisk {
+#lekrjbmija .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fvierlultw .gt_indent_1 {
+#lekrjbmija .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fvierlultw .gt_indent_2 {
+#lekrjbmija .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fvierlultw .gt_indent_3 {
+#lekrjbmija .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fvierlultw .gt_indent_4 {
+#lekrjbmija .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fvierlultw .gt_indent_5 {
+#lekrjbmija .gt_indent_5 {
   text-indent: 25px;
 }
 
-#fvierlultw .katex-display {
+#lekrjbmija .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#fvierlultw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#lekrjbmija div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -699,10 +698,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading header">
-<td colspan="4" class="gt_heading gt_title gt_font_normal">Which UFC Weight Class has highest Knockout Rate?</td>
+<td colspan="4" class="gt_heading gt_title gt_font_normal" style="color: #000000; font-size: 18; font-weight: bold">Which UFC Weight Class has highest Knockout Rate?</td>
 </tr>
 <tr class="gt_heading even">
-<td colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">KO/TKO Across all mens UFC weight classes from June 2016 - June 2026</td>
+<td colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="color: #000000; font-size: 11">KO/TKO Across all mens UFC weight classes from June 2016 - June 2026</td>
 </tr>
 <tr class="gt_col_headings header">
 <th id="weight_class" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Weight Class</th>
@@ -771,7 +770,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>The first table shows that light heavyweight fighters actually produce the most knockouts at a rate of 45.4%, directly followed by heavyweight fighters with a knockout rate of 43.3%. Looking at the lower end of the table, flyweight comes in with a knockout rate of 23.4%, marking a 22 percent differnce between the highest and lowest, suggesting that heavier fighters are more likely to produce knockouts.</p>
+<p>The first table shows that light heavyweight fighters actually produce the most knockouts at a rate of 45.4%, directly followed by heavyweight fighters with a knockout rate of 43.3%. Looking at the lower end of the table, flyweight comes in with a knockout rate of 23.4%, marking a 22 percent difference between the highest and lowest, suggesting that heavier fighters are more likely to produce knockouts.</p>
 <p>While knockout rates show which class produces the most finishes, they don’t tell the story of how quickly those fights conclude. After first looking at how a fight outcome differs across UFC weight classes, the next step is to see how long those fights last. This scatter plot goes into comparisons of eight UFC men’s weight classes with the average final time reached in fights lasting from 2016-2026. The goal is to see whether heavier UFC fighters finish fights faster than lighter fighters.</p>
 <div class="cell">
 <details class="code-fold">
@@ -792,22 +791,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Average Final Round"</span>,</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: UFCStats via TidyTuesday | By: Oscar Lockwood-Powell"</span></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">290</span>),</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">c</span>(<span class="fl">2.05</span>, <span class="fl">2.60</span>)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>)</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(avg_round, <span class="dv">2</span>)),</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">vjust =</span> <span class="dv">2</span>,</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="dv">3</span>,</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="st">"black"</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">290</span>)) <span class="sc">+</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">2.05</span>, <span class="fl">2.60</span>)) <span class="sc">+</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(avg_round, <span class="dv">2</span>)),</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">vjust =</span> <span class="dv">2</span>,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="st">"black"</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -817,8 +814,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>This scatterplot shows a downward trend throughout the weight classes, showing that heavier UFC fighters generally tend to finish fights faster than lighter fighters. The lighter weight classes such as bantamweight and featherweight have a more consistent chance of making it to later rounds, while light heavyweight and heavweight fights tend to end sooner.</p>
-<p>Although there is a big difference between all of the divisions, the trend shows an overall case of a fighters weight playing a bigger role in a fight result. This further supports the idea that heavier fighters are more likely to end fights earlier.</p>
+<p>This scatterplot shows a downward trend throughout the weight classes, showing that heavier UFC fighters generally tend to finish fights faster than lighter fighters. The lighter weight classes such as bantamweight and featherweight have a more consistent chance of making it to later rounds, while light heavyweight and heavyweight fights tend to end sooner.</p>
+<p>Although there is a clear difference between all of the divisions, this further supports the idea that weight is a big factor in determining the outcome of a fight. However, knockout rates alone will not tell the whole story that we are trying to tell; By comparing the knockout rates between 2016-2020 and 2021-2026, we can see if there has been a clear difference in recent times in the trend of who has more knockout power, showing if lighter fighters are closing the gap for this stereotype.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -845,7 +842,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">change =</span> <span class="fu">round</span>(late_percentage <span class="sc">-</span> early_percentage, <span class="dv">1</span>)</span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(knockout_change) <span class="sc">+</span></span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
@@ -892,7 +889,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Weight Class"</span>,</span>
 <span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Black: 2016–2020 | Red: 2021–2026</span><span class="sc">\n</span><span class="st">Source: UFCStats via TidyTuesday | By: Oscar Lockwood-Powell"</span></span>
 <span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">52</span>)) <span class="sc">+</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">52</span>)) <span class="sc">+</span></span>
 <span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
 <span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
@@ -908,8 +905,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Overall, this data shows that although heavier fighters are producing more higher level knockouts, lighter fighters have started to close that gap over the last decade. Featherweight is a prime example of this, seeing the highest jump going from 24.6 to 32.5% KO/TKO rate within the last 10 years. Lightweight and Flyweight fighters also saw an increase in knockout rates throughout the last 10 years, while heavyweight saw a decrease in knockouts as well as light heavyweight only increasing by 1.8%. This shows that even tho heavier weight classes are associated with more knockouts, ligher fighters are becoming more competitive in this category.</p>
-<p>Ultimately the relationship of heavyweight fighters and knockouts still stays strong to this day. However, lighter fighters are starting to heavily compete in this category, turning the tide of this stereotype.</p>
+<p>Overall, this data shows that although heavier fighters are producing more higher-level knockouts, lighter fighters have started to close that gap over the last decade. Featherweight is a prime example of this, seeing the highest jump, going from 24.6 to 32.5% KO/TKO rate within the last 10 years. Lightweight and Flyweight fighters also saw an increase in knockout rates throughout the last 10 years, while heavyweight saw a decrease in knockouts and light heavyweight only increased by 1.8%. This shows that even tho heavier weight classes are associated with more knockouts, lighter fighters are becoming more competitive in this category.</p>
+<p>Ultimately, the relationship between heavyweight fighters and knockouts still stays strong to this day. However, lighter fighters are starting to compete heavily in this category, turning the tide of this stereotype.</p>
 
 
 
